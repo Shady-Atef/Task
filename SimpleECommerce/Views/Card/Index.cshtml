@@ -1,0 +1,64 @@
+﻿@model List<SimpleECommerce.Models.Item>
+
+<div class="col-md-12 order-details" style=" align-content:center">
+    <div class="section-title text-center">
+        <h3 class="title">Your Order</h3>
+    </div>
+    <div class="order-summary col-md-9">
+        <div class="order-col">
+            <div><strong>PRODUCT</strong></div>
+            <div><strong>TOTAL</strong></div>
+        </div>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="container order-products">
+                    <div class="row" style="margin:5px;padding:5px;">
+                        <div class="col-md-4" style="text-align:left">
+                            @item.Name
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </div>
+                        <div class="col-md-1" style="text-align:center">
+                            $@item.Price
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+        <div class="order-col">
+            <div>Shiping</div>
+            <div><strong>FREE</strong></div>
+        </div>
+        <div class="order-col">
+            <div><strong>TOTAL</strong></div>
+            <div>
+                <strong class="order-total">
+                    @if (Model != null)
+                    {
+                        Model.Sum(i => i.Price);
+                    }
+                    
+                </strong>
+            </div>
+        </div>
+    </div>
+    <div class="input-checkbox col-md-9">
+        <input type="checkbox" id="terms">
+        <label for="terms">
+            <span></span>
+            I've read and accept the <a href="#">terms & conditions</a>
+        </label>
+    </div>
+    <a href="#" class="primary-btn order-submit col-md-9">Place order</a>
+</div>
+
+
+
+
+
+

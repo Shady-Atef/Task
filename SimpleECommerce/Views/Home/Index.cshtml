@@ -1,0 +1,59 @@
+﻿@model List<SimpleECommerce.Models.Item>
+
+
+
+<div class="products-slick" data-nav="#slick-nav-1">
+    <!-- product -->
+    @foreach (var item in Model)
+    {
+        <div class="product ">
+            <div class="product-img">
+                <img src="./img/product01.png" alt="">
+            </div>
+            <div class="product-body">
+                <p class="product-category">Category</p>
+                <div></div>
+                <div></div>
+                <span></span>
+                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+
+                <h4 class="product-price">$ @item.Price <del class="product-old-price"></del></h4>
+                <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+            <div class="add-to-cart">
+                <button class="add-to-cart-btn" onclick="addToCart(@item.ID)"><i class="fa fa-shopping-cart"></i> add to cart</button>
+            </div>
+        </div>
+    }
+
+
+    <!-- /product -->
+</div>
+
+
+
+<script>
+    var counter = 0;
+    var itemsIds = new Array();
+    function addToCart(id) {
+
+
+        itemsIds[counter] = id;
+        counter++;
+        localStorage.setItem("myids", JSON.stringify(itemsIds));
+      //  alert("my localstorage");
+        toastr.success("Item added to your card", "succeded");
+        document.getElementById("yourCart").innerHTML = counter ;
+      //  alert(localStorage["myids"]);
+        
+
+    }
+ 
+</script>
+
